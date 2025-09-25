@@ -1,0 +1,42 @@
+name: Update Project Data
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Joka päivä klo 6:00 UTC
+  workflow_dispatch:      # Mahdollistaa manuaalisen käynnistyksen
+
+permissions:
+  contents: write  # Tarvitaan tiedostojen muokkaamiseen
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          
+      - name: Fetch new project data
+        run: node scripts/fetch-data.js
+        
+      - name: Check for changes
+        id: verify-changed-files
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+        
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/projects.json
+          git commit -m "Automaattinen hanketietojen päivitys $(date '+%Y-%m-%d %H:%M')"
+          git push
