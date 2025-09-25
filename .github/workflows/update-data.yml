@@ -37,6 +37,6 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/projects.json
+          git add public/data/projects.json
           git commit -m "Automaattinen hanketietojen päivitys $(date '+%Y-%m-%d %H:%M')"
           git push
