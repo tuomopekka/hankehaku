@@ -24,7 +24,73 @@ if (!document.querySelector('#custom-font-styles')) {
   document.head.appendChild(style);
 }
 
-// Toimiva staattinen data poistettu - ladataan nyt JSON-tiedostosta
+// Staattinen data - myöhemmin korvataan JSON-latauksella
+const staticProjects = [
+  {
+    id: "LVM031:00/2019",
+    title: "Suurten raidehankkeiden edistäminen",
+    ministry: "Liikenne- ja viestintäministeriö",
+    ministryCode: "LVM",
+    status: "Valmis",
+    startDate: "2019-09-10",
+    endDate: "2021-12-31",
+    description: "Joulukuussa 2020 perustettiin Suomi-rata Oy ja Turun Tunnin Juna Oy suunnittelemaan Suomi-rataa ja tunnin Helsinki-Turku -raideyhteyttä. Valtion osuus yhtiöissä on 51 prosenttia.",
+    phase: "Toteutettu",
+    category: "Kehittämishankkeet",
+    caseNumbers: ["LVM/235/01/2019", "VN/7618/2019"],
+    governmentProgramme: "Marin",
+    strategicAreas: ["Dynaaminen ja vireä Suomi", "Liikenneverkkojen kehittäminen"],
+    contacts: [{ name: "Jääskeläinen, Mikko", role: "Erityisasiantuntija", period: "29.6. – 31.12.2021" }]
+  },
+  {
+    id: "VNK007:00/2024",
+    title: "Valtioneuvoston turvallisuusjohtamisen toimintamallin kehittäminen",
+    ministry: "Valtioneuvoston kanslia",
+    ministryCode: "VNK",
+    status: "Käynnissä",
+    startDate: "2024-03-20",
+    endDate: "2024-12-31",
+    description: "Hankkeen tehtävänä on valmistella ehdotukset valtioneuvostotason turvallisuusjohtamisen rakenteisiin, resursseihin ja hallintoon sekä poliittisen ohjauksen muotoihin.",
+    phase: "Valmistelu",
+    category: "Selonteot",
+    caseNumbers: ["VNK007:00/2024"],
+    governmentProgramme: "Orpo",
+    strategicAreas: ["Turvallinen Suomi"],
+    contacts: [{ name: "Martikainen, Harri", role: "Osastopäällikkö", period: "20.3.2024 –" }]
+  },
+  {
+    id: "STM040:00/2024",
+    title: "Sosiaali- ja terveystietojen toissijaisen käytön lain muuttaminen",
+    ministry: "Sosiaali- ja terveysministeriö",
+    ministryCode: "STM",
+    status: "Lausuntokierros",
+    startDate: "2024-02-15",
+    endDate: "2025-06-30",
+    description: "Hankkeen tarkoituksena on mahdollistaa hyvä toimintaympäristö sekä kotimaisille että kansainvälisille TKI-alan toimijoille kansalaisten oikeuksia ja yksityisyyttä kunnioittaen.",
+    phase: "Lausuntokierros",
+    category: "Lainvalmistelu",
+    caseNumbers: ["STM040:00/2024"],
+    governmentProgramme: "Orpo",
+    strategicAreas: ["Terveydenhuollon digitalisaatio"],
+    contacts: [{ name: "Komulainen, Joni", role: "Neuvotteleva virkamies", period: "15.2.2024 –" }]
+  },
+  {
+    id: "SM015:00/2024",
+    title: "Passien voimassaoloajan pidentäminen 10 vuoteen",
+    ministry: "Sisäministeriö",
+    ministryCode: "SM",
+    status: "Käynnissä",
+    startDate: "2024-01-15",
+    endDate: "2026-06-30",
+    description: "Hankkeen tavoitteena on pidentää passien voimassaoloaika 10 vuoteen nykyisestä 5 vuodesta. Hallituksen esitys tutkii voimassaoloaikojen pidentämisen turvallisuusvaikutuksia.",
+    phase: "Lainvalmistelu",
+    category: "Lainvalmistelu",
+    caseNumbers: ["SM015:00/2024"],
+    governmentProgramme: "Orpo",
+    strategicAreas: ["Hallinnon keventäminen"],
+    contacts: [{ name: "Kivinen, Marja", role: "Lainsäädäntöneuvos", period: "15.1.2024 –" }]
+  }
+];
 
 // Suodatinvalikot
 const ministryOptions = [
@@ -267,7 +333,8 @@ const ProjectDetail = ({ project, onBack }) => {
 
 export default function ValtioneuvostoHaku() {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredProjects, setFilteredProjects] = useState(allProjects);
+  const [projects, setProjects] = useState(staticProjects);
+  const [filteredProjects, setFilteredProjects] = useState(staticProjects);
   const [selectedProject, setSelectedProject] = useState(null);
   const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
@@ -276,22 +343,35 @@ export default function ValtioneuvostoHaku() {
     category: 'all'
   });
 
+  // Lataa projektidata - kokeilee JSON:ia, fallback staattiseen
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 800));
-      setFilteredProjects(allProjects);
-      setLoading(false);
+    const loadProjects = async () => {
+      try {
+        const response = await fetch('/data/projects.json');
+        if (!response.ok) throw new Error('JSON lataus epäonnistui');
+        const data = await response.json();
+        setProjects(data);
+        setFilteredProjects(data);
+        console.log('JSON-data ladattu onnistuneesti');
+      } catch (error) {
+        console.warn('JSON-lataus epäonnistui, käytetään staattista dataa:', error);
+        setProjects(staticProjects);
+        setFilteredProjects(staticProjects);
+      } finally {
+        setLoading(false);
+      }
     };
     
-    loadData();
+    loadProjects();
   }, []);
 
+  // Suodatus- ja hakuoperaatiot
   useEffect(() => {
     if (loading) return;
     
-    let results = allProjects;
+    let results = projects;
 
+    // Tekstihaku
     if (searchTerm) {
       const term = searchTerm.toLowerCase();
       results = results.filter(project =>
@@ -302,6 +382,7 @@ export default function ValtioneuvostoHaku() {
       );
     }
 
+    // Suodattimet
     if (filters.ministry !== 'all') {
       results = results.filter(project => project.ministryCode === filters.ministry);
     }
@@ -313,7 +394,7 @@ export default function ValtioneuvostoHaku() {
     }
 
     setFilteredProjects(results);
-  }, [searchTerm, filters, loading]);
+  }, [searchTerm, filters, loading, projects]);
 
   if (selectedProject) {
     return (
@@ -338,6 +419,7 @@ export default function ValtioneuvostoHaku() {
             </p>
           </div>
 
+          {/* Hakupalkki ja suodattimet */}
           <div className="space-y-6">
             <div className="bg-blue-50 p-6 rounded-lg">
               <h2 className="text-lg font-semibold text-gray-900 mb-4" style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>Hae hankkeita</h2>
@@ -409,6 +491,7 @@ export default function ValtioneuvostoHaku() {
         </div>
       </div>
 
+      {/* Sisältö */}
       <div className="max-w-6xl mx-auto px-8 py-8">
         {loading ? (
           <div className="flex items-center justify-center py-16">
@@ -421,7 +504,7 @@ export default function ValtioneuvostoHaku() {
           <>
             <div className="mb-6 flex items-center justify-between">
               <div className="text-white">
-                <strong>{filteredProjects.length}</strong> hanketta löytyi {allProjects.length}:sta
+                <strong>{filteredProjects.length}</strong> hanketta löytyi {projects.length}:sta
               </div>
               <div className="text-sm text-gray-300">
                 Päivitetty viimeksi: {new Date().toLocaleDateString('fi-FI')}
@@ -449,6 +532,7 @@ export default function ValtioneuvostoHaku() {
         )}
       </div>
 
+      {/* Footer */}
       <footer className="text-white mt-16" style={{ backgroundColor: '#002f6c' }}>
         <div className="max-w-6xl mx-auto px-8 py-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -510,4 +594,3 @@ export default function ValtioneuvostoHaku() {
     </div>
   );
 }
-          
