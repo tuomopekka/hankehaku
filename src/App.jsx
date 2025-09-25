@@ -347,7 +347,7 @@ export default function ValtioneuvostoHaku() {
   useEffect(() => {
     const loadProjects = async () => {
       try {
-        const response = await fetch('/data/projects.json');
+        const response = await fetch('/hankehaku/data/projects.json');
         if (!response.ok) throw new Error('JSON lataus epäonnistui');
         const data = await response.json();
         setProjects(data);
@@ -594,3 +594,4 @@ export default function ValtioneuvostoHaku() {
     </div>
   );
 }
+
