@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Search, Filter, Calendar, Building, User, ExternalLink, FileText, Download, Loader, ChevronDown } from 'lucide-react';
 
-// Google Fonts import for Noto Sans and Roboto Condensed
+// Google Fonts import for Noto Sans, Roboto Condensed, and Roboto Slab
 if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
   const fontLink = document.createElement('link');
-  fontLink.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600;700&display=swap';
+  fontLink.href = 'https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700&family=Roboto+Condensed:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap';
   fontLink.rel = 'stylesheet';
   document.head.appendChild(fontLink);
 }
@@ -394,9 +394,9 @@ export default function ValtioneuvostoHaku() {
     <div className="min-h-screen" style={{ backgroundColor: '#002f6c', fontFamily: '"Noto Sans", sans-serif' }}>
       {/* Main header */}
       <div className="bg-white border-b">
-        <div className="max-w-6xl mx-auto px-8 py-12">
+        <div className="max-w-6xl mx-auto px-8 py-16">
           <div className="mb-6">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
+            <h1 className="text-4xl font-semibold mb-4" style={{ fontFamily: '"Roboto Slab", serif', color: '#002f6c' }}>
               Valtioneuvoston hankkeet
             </h1>
             <p className="text-lg text-gray-700 max-w-4xl">
