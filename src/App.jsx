@@ -108,7 +108,7 @@ const ministryOptions = [
 ];
 
 const statusOptions = [
-  { code: "all", name: "Kaikki tilat" },
+  { code: "all", name: "Kaikki vaiheet" },
   { code: "Käynnissä", name: "Käynnissä" },
   { code: "Lausuntokierros", name: "Lausuntokierroksella" },
   { code: "Valmis", name: "Valmis" },
@@ -117,7 +117,7 @@ const statusOptions = [
 ];
 
 const categoryOptions = [
-  { code: "all", name: "Kaikki kategoriat" },
+  { code: "all", name: "Kaikki tyypit" },
   { code: "Lainvalmistelu", name: "Lainvalmistelu" },
   { code: "Selonteot", name: "Selonteot" },
   { code: "Kehittämishankkeet", name: "Kehittämishankkeet" },
@@ -198,43 +198,10 @@ const ProjectDetail = ({ project, onBack }) => {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#002f6c', fontFamily: '"Noto Sans", sans-serif' }}>
-      <div className="text-white" style={{ backgroundColor: '#002f6c' }}>
-        <div className="max-w-6xl mx-auto px-8 py-6">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="bg-white p-2 rounded-md">
-                <svg width="32" height="32" viewBox="0 0 32 32" className="text-blue-900">
-                  <rect width="32" height="32" rx="4" fill="currentColor"/>
-                  <path d="M8 12h16v2H8v-2zm0 4h16v2H8v-2zm0 4h12v2H8v-2z" fill="white"/>
-                  <circle cx="16" cy="8" r="3" fill="white"/>
-                  <path d="M12 24l4-4 4 4v4H12v-4z" fill="white"/>
-                </svg>
-              </div>
-              <div>
-                <div className="text-2xl font-bold" style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>Valtioneuvoston hankehaku</div>
-                <div className="text-sm opacity-90">Etsi valtioneuvoston ja ministeriöiden hankkeita</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <div className="bg-white border-b">
-        <div className="max-w-6xl mx-auto px-8 py-2">
-          <div className="text-sm text-gray-600">
-            <span className="hover:text-blue-600 cursor-pointer">Etusivu</span>
-            <span className="mx-2">›</span>
-            <span className="hover:text-blue-600 cursor-pointer">Hankkeet ja lainsäädäntö</span>
-            <span className="mx-2">›</span>
-            <span className="font-medium">Valtioneuvoston hankkeet</span>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-6xl mx-auto px-8 py-8">
         <button 
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-blue-700 hover:text-blue-800 mb-6 font-medium"
+          className="inline-flex items-center gap-2 text-white hover:text-gray-300 mb-6 font-medium"
         >
           ← Takaisin hakutuloksiin
         </button>
@@ -425,47 +392,15 @@ export default function ValtioneuvostoHaku() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#002f6c', fontFamily: '"Noto Sans", sans-serif' }}>
-      <div className="text-white" style={{ backgroundColor: '#002f6c' }}>
-        <div className="max-w-6xl mx-auto px-8 py-6">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="bg-white p-2 rounded-md">
-                <svg width="32" height="32" viewBox="0 0 32 32" className="text-blue-900">
-                  <rect width="32" height="32" rx="4" fill="currentColor"/>
-                  <path d="M8 12h16v2H8v-2zm0 4h16v2H8v-2zm0 4h12v2H8v-2z" fill="white"/>
-                  <circle cx="16" cy="8" r="3" fill="white"/>
-                  <path d="M12 24l4-4 4 4v4H12v-4z" fill="white"/>
-                </svg>
-              </div>
-              <div>
-                <div className="text-2xl font-bold" style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>Valtioneuvoston hankehaku</div>
-                <div className="text-sm opacity-90">Etsi valtioneuvoston ja ministeriöiden hankkeita</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      
+      {/* Main header */}
       <div className="bg-white border-b">
-        <div className="max-w-6xl mx-auto px-8 py-2">
-          <div className="text-sm text-gray-600">
-            <span className="hover:text-blue-600 cursor-pointer">Etusivu</span>
-            <span className="mx-2">›</span>
-            <span className="hover:text-blue-600 cursor-pointer">Hankkeet ja lainsäädäntö</span>
-            <span className="mx-2">›</span>
-            <span className="font-medium">Valtioneuvoston hankkeet</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-white border-b">
-        <div className="max-w-6xl mx-auto px-8 py-8">
+        <div className="max-w-6xl mx-auto px-8 py-12">
           <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
+            <h1 className="text-4xl font-bold text-gray-900 mb-4" style={{ fontFamily: '"Roboto Condensed", sans-serif' }}>
               Valtioneuvoston hankkeet
             </h1>
             <p className="text-lg text-gray-700 max-w-4xl">
-              Ministeriöt toteuttavat hallitusohjelmaa, valmistelevat lakeja ja muita säädöksiä sekä vievät eteenpäin uudistuksia erilaisissa hankkeissa, työryhmissä ja toimielimissä.
+              Selaa valtioneuvoston hankkeita ja löydä tietoa lainvalmisteluista, uudistuksista ja selvityksistä. Rajaa hakua ministeriön tai hankkeen vaiheen mukaan.
             </p>
           </div>
 
@@ -502,7 +437,7 @@ export default function ValtioneuvostoHaku() {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Tila (käynnissä, valmis tms.)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Hankkeen vaihe</label>
                   <div className="relative">
                     <select 
                       value={filters.status}
