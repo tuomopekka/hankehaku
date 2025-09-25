@@ -48,7 +48,7 @@ async function fetchProjects() {
     };
     
     // Tallenna JSON-tiedostoksi
-    fs.writeFileSync('./data/projects.json', JSON.stringify(updatedData.projects, null, 2));
+    fs.writeFileSync('./public/data/projects.json', JSON.stringify(updatedData.projects, null, 2));
     console.log(`Päivitetty ${updatedData.projects.length} hanketta`);
     console.log(`Viimeksi päivitetty: ${updatedData.lastUpdated}`);
     
