@@ -20,6 +20,9 @@ jobs:
         with:
           node-version: 20
           
+      - name: Install scraping dependencies
+        run: npm install node-fetch@3.3.0 cheerio@1.0.0-rc.12
+          
       - name: Fetch new project data
         run: node scripts/fetch-data.js
         
