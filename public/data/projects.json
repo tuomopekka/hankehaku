@@ -1,27 +1,235 @@
 [
   {
-    "id": "NOFOUND001:00/2025",
-    "title": "Ei hankkeita: 2 linkkiä, 1 otsikkoa",
-    "ministry": "Debug",
-    "ministryCode": "NO",
-    "status": "Debug",
-    "startDate": "2025-09-26",
+    "id": "LVM031:00/2019",
+    "title": "Suurten raidehankkeiden edistäminen",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "Completed",
+    "startDate": "2019-01-01",
     "endDate": "2025-12-31",
-    "description": "Scraping debug: Analysoitiin 150655 merkkiä HTML:ää, löydettiin 2 linkkiä ja 1 otsikkoa, mutta ei tunnistettavia hankkeita.",
-    "phase": "Debug",
-    "category": "Debug",
+    "description": "Valitse kieli:",
+    "phase": "Completed",
+    "category": "Lainvalmistelu",
     "caseNumbers": [
-      "DEBUG/001/2025"
+      "LVM031:00/2019"
     ],
-    "governmentProgramme": "Orpo",
+    "governmentProgramme": "Marin",
     "strategicAreas": [
-      "Debugging"
+      "Hallinnon kehittäminen"
     ],
     "contacts": [
       {
-        "name": "Debug",
-        "role": "Tester",
-        "period": "2025 –"
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "VNK007:00/2024",
+    "title": "Valtioneuvoston turvallisuusjohtamisen toimintamallin kehittäminen-hanke",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "In progress",
+    "startDate": "2024-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "In progress",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "VNK007:00/2024"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Turvallisuus"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "STM040:00/2024",
+    "title": "Hallituksen esitys sosiaali- ja terveystietojen toissijaisesta käytöstä annetun lain muuttamisesta ja siihen liittyviksi laeiksi",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "In progress",
+    "startDate": "2024-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "In progress",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "STM040:00/2024"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Terveys"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "SM015:00/2024",
+    "title": "Pelastustoimen virkapukuasetuksen muuttaminen",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "In progress",
+    "startDate": "2024-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "In progress",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "SM015:00/2024"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Hallinnon kehittäminen"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "YM012:00/2025",
+    "title": "Hallituksen esitys eduskunnalle laiksi jätelain muuttamisesta (SUP-kustannusvastuu)",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "In progress",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "In progress",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "YM012:00/2025"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Hallinnon kehittäminen"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "VM008:00/2024",
+    "title": "Hallituksen esitys eduskunnalle laeiksi vuoden 2025 tuloveroasteikosta ja tuloverolain muuttamisesta ja väliaikaisesta muuttamisesta sekä eräiksi muiksi verolaeiksi",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "Completed",
+    "startDate": "2024-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "Completed",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "VM008:00/2024"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Hallinnon kehittäminen"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "OM003:00/2024",
+    "title": "Direktiiviehdotus kolmansien valtioiden puolesta harjoitettavan intressivaikuttamisen avoimuudesta ja rekisteröinnistä sekä ehdotus asetukseksi asetusten (EU) N:o 1024/2012 ja (EU) 2018/1724 muuttamisesta (EU-valmistelu)",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "In progress",
+    "startDate": "2024-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "In progress",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "OM003:00/2024"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Hallinnon kehittäminen"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "LVM045:00/2024",
+    "title": "Teledirektiivin täytäntöönpanon seuranta",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "Completed",
+    "startDate": "2024-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "Completed",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "LVM045:00/2024"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Hallinnon kehittäminen"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
+      }
+    ]
+  },
+  {
+    "id": "STM023:00/2025",
+    "title": "Työturvallisuussäännöksiä valmistelevan neuvottelukunnan HTP-jaosto, toimikausi 1.1.2025-31.12.2027",
+    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
+    "ministryCode": "UNK",
+    "status": "In progress",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "description": "Valitse kieli:",
+    "phase": "In progress",
+    "category": "Lainvalmistelu",
+    "caseNumbers": [
+      "STM023:00/2025"
+    ],
+    "governmentProgramme": "Orpo",
+    "strategicAreas": [
+      "Turvallisuus"
+    ],
+    "contacts": [
+      {
+        "name": "Scrapettu yhteystieto",
+        "role": "Yhteyshenkilö",
+        "period": "2024-2025"
       }
     ]
   }
