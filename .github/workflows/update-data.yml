@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Varmistaa että uusimmat muutokset haetaan
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -35,7 +37,7 @@ jobs:
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
         
-    - name: Commit and push changes
+      - name: Commit and push changes
         if: steps.verify-changed-files.outputs.changed == 'true'
         run: |
           git config --local user.email "action@github.com"
