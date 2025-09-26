@@ -4,7 +4,7 @@ import fs from 'fs';
 
 async function scrapeProjects() {
   try {
-    console.log('Scrapetaan hankkeita valtioneuvosto.fi:stä...');
+    console.log('=== DEBUG: Aloitetaan scraping ===');
     
     const response = await fetch('https://valtioneuvosto.fi/hankkeet', {
       headers: {
@@ -13,79 +13,79 @@ async function scrapeProjects() {
     });
     
     const html = await response.text();
-    console.log(`Ladattiin ${html.length} merkkiä HTML:ää`);
+    console.log(`HTML ladattu: ${html.length} merkkiä`);
     
     const $ = cheerio.load(html);
     const projects = [];
     
-    console.log('=== DEBUG: Analysoidaan sivun rakennetta ===');
-    
-    // Etsitään linkkejä
+    console.log('=== Etsitään linkkejä ===');
     let linkCount = 0;
-    $('a[href*="project"], a[href*="hanke"]').each((i, el) => {
-      const link = $(el).attr('href');
+    $('a').each((i, el) => {
+      const href = $(el).attr('href');
       const text = $(el).text().trim();
-      if (text.length > 5) {
-        console.log(`Hankelinkki ${++linkCount}: "${text}" -> ${link}`);
+      if (href && (href.includes('project') || href.includes('hanke')) && text.length > 10) {
+        console.log(`Linkki ${++linkCount}: "${text}" -> ${href}`);
       }
     });
-    console.log(`Löytyi ${linkCount} hankelinkkiä`);
     
-    // Etsitään otsikoita  
+    console.log('=== Etsitään otsikoita ===');
     let titleCount = 0;
     $('h1, h2, h3, h4').each((i, el) => {
       const text = $(el).text().trim();
-      if (text.length > 10 && text.length < 200) {
+      if (text.length > 15) {
         console.log(`Otsikko ${++titleCount}: "${text}"`);
         
-        if (text.includes('lain') || text.includes('hanke') || text.includes('selvitys')) {
-          console.log('  -> Tämä näyttää hankkeelta!');
+        if (text.toLowerCase().includes('lain') || 
+            text.toLowerCase().includes('hanke') || 
+            text.toLowerCase().includes('selvitys')) {
+          console.log('  ^^ HANKE LÖYTYI!');
+          
           projects.push({
-            id: `SCRAPED${String(projects.length + 1).padStart(3, '0')}:00/2025`,
+            id: `FOUND${String(projects.length + 1).padStart(3, '0')}:00/2025`,
             title: text,
             ministry: "Scrapettu ministeriö",
-            ministryCode: "SCR",
-            status: "Käynnissä",
+            ministryCode: "FOUND",
+            status: "Löydetty",
             startDate: new Date().toISOString().split('T')[0],
             endDate: "2025-12-31",
-            description: `Automaattisesti scrapettu hanke: ${text}`,
-            phase: "Selvitystyö",
-            category: "Lainvalmistelu",
-            caseNumbers: [`SCR/${projects.length + 1}/2025`],
+            description: `Automaattisesti löydetty hanke web scrapingillä: ${text}`,
+            phase: "Löydetty",
+            category: "Lainvalmistelu", 
+            caseNumbers: [`FOUND/${projects.length + 1}/2025`],
             governmentProgramme: "Orpo",
-            strategicAreas: ["Web scraping"],
-            contacts: [{ name: "Scraper Bot", role: "Automaatti", period: "2025 –" }]
+            strategicAreas: ["Web scraping success"],
+            contacts: [{ name: "Scraper", role: "Finder", period: "2025 –" }]
           });
         }
       }
     });
-    console.log(`Analysoitiin ${titleCount} otsikkoa`);
+    
+    console.log(`=== YHTEENVETO: ${linkCount} linkkiä, ${titleCount} otsikkoa, ${projects.length} hanketta ===`);
     
     if (projects.length === 0) {
-      console.log('DEBUG: Ei löytynyt tunnistettavia hankkeita');
       projects.push({
-        id: `DEBUG001:00/2025`,
-        title: `HTML-analyysi: ${linkCount} linkkiä, ${titleCount} otsikkoa`,
-        ministry: "Debug-ministeriö",
-        ministryCode: "DBG", 
+        id: `NOFOUND001:00/2025`,
+        title: `Ei hankkeita: ${linkCount} linkkiä, ${titleCount} otsikkoa`,
+        ministry: "Debug",
+        ministryCode: "NO",
         status: "Debug",
         startDate: new Date().toISOString().split('T')[0],
         endDate: "2025-12-31",
-        description: `Scrapettu ${html.length} merkkiä HTML:ää. Löydetty ${linkCount} hankelinkkiä ja ${titleCount} otsikkoa, mutta ei tunnistettuja hanke-elementtejä.`,
+        description: `Scraping debug: Analysoitiin ${html.length} merkkiä HTML:ää, löydettiin ${linkCount} linkkiä ja ${titleCount} otsikkoa, mutta ei tunnistettavia hankkeita.`,
         phase: "Debug",
-        category: "Kehittämishankkeet",
-        caseNumbers: ["DBG/001/2025"],
-        governmentProgramme: "Orpo", 
+        category: "Debug",
+        caseNumbers: ["DEBUG/001/2025"],
+        governmentProgramme: "Orpo",
         strategicAreas: ["Debugging"],
-        contacts: [{ name: "Debug Bot", role: "Analysoija", period: "2025 –" }]
+        contacts: [{ name: "Debug", role: "Tester", period: "2025 –" }]
       });
     }
     
     fs.writeFileSync('./public/data/projects.json', JSON.stringify(projects, null, 2));
-    console.log(`=== Tallennettu ${projects.length} hanketta ===`);
+    console.log(`=== VALMIS: Tallennettu ${projects.length} hanketta ===`);
     
   } catch (error) {
-    console.error('Scraping epäonnistui:', error);
+    console.error('VIRHE:', error);
     process.exit(1);
   }
 }
