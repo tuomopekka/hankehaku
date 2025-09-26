@@ -6,16 +6,11 @@ async function scrapeProjects() {
   try {
     console.log('Scrapetaan hankkeita valtioneuvosto.fi:stä...');
     
-    // Hae hankkeet-sivu
     const response = await fetch('https://valtioneuvosto.fi/hankkeet', {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
       }
     });
-    
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-    }
     
     const html = await response.text();
     console.log(`Ladattiin ${html.length} merkkiä HTML:ää`);
@@ -23,102 +18,86 @@ async function scrapeProjects() {
     const $ = cheerio.load(html);
     const projects = [];
     
-    // Etsi hanke-elementtejä (tämä vaatii sivun rakenteen tutkimista)
-    $('.hanke-item, .project-item, .list-item').each((index, element) => {
-      const $el = $(element);
-      
-      // Poimi tiedot HTML-elementeistä
-      const title = $el.find('.title, h3, h2').first().text().trim();
-      const ministry = $el.find('.ministry, .ministeriö').text().trim();
-      const status = $el.find('.status, .tila').text().trim();
-      const description = $el.find('.description, .kuvaus').text().trim();
-      
-      if (title && title.length > 10) { // Vain jos löytyy oikea otsikko
-        projects.push({
-          id: `SCRAPED${String(index).padStart(3, '0')}:00/2025`,
-          title: title,
-          ministry: ministry || "Tuntematon ministeriö",
-          ministryCode: getMinistryCode(ministry),
-          status: status || "Käynnissä",
-          startDate: new Date().toISOString().split('T')[0],
-          endDate: "2025-12-31",
-          description: description || "Kuvaus ei saatavilla",
-          phase: status || "Selvitystyö",
-          category: "Lainvalmistelu",
-          caseNumbers: [`SCRAPED/${index}/2025`],
-          governmentProgramme: "Orpo",
-          strategicAreas: ["Web scraping"],
-          contacts: [{ name: "Automaatti", role: "Järjestelmä", period: "2025 –" }]
-        });
+    // Debug: analysoidaan sivun rakennetta
+    console.log('Analysoidaan sivun rakennetta...');
+    
+    // Etsitään kaikki linkit jotka sisältävät "hanke" tai "project"
+    $('a[href*="project"], a[href*="hanke"]').each((i, el) => {
+      const link = $(el).attr('href');
+      const text = $(el).text().trim();
+      console.log(`Löytyi hankelinkki: ${text} -> ${link}`);
+    });
+    
+    // Etsitään otsikoita jotka voivat olla hanke-otsikoita
+    $('h1, h2, h3, h4, .title, [class*="title"], [class*="heading"]').each((i, el) => {
+      const text = $(el).text().trim();
+      if (text.length > 10 && text.length < 200) {
+        const parent = $(el).parent();
+        const ministry = parent.find('[class*="ministry"], [class*="ministeri"], [class*="org"]').text().trim();
+        
+        if (text.includes('lain') || text.includes('hanke') || text.includes('selvitys') || 
+            text.includes('uudistus') || text.includes('kehittäminen')) {
+          
+          console.log(`Mahdollinen hanke: ${text}`);
+          console.log(`Ministeriö: ${ministry}`);
+          
+          projects.push({
+            id: `SCRAPED${String(projects.length + 1).padStart(3, '0')}:00/2025`,
+            title: text,
+            ministry: ministry || "Tuntematon ministeriö",
+            ministryCode: getMinistryCode(ministry || text),
+            status: "Käynnissä",
+            startDate: new Date().toISOString().split('T')[0],
+            endDate: "2025-12-31",
+            description: `Scrapettu hanke: ${text}`,
+            phase: "Selvitystyö",
+            category: "Lainvalmistelu",
+            caseNumbers: [`SCRAPED/${projects.length + 1}/2025`],
+            governmentProgramme: "Orpo",
+            strategicAreas: ["Web scraping"],
+            contacts: [{ name: "Automaatti", role: "Järjestelmä", period: "2025 –" }]
+          });
+        }
       }
     });
     
-    // Jos ei löydy mitään, käytä fallback-dataa
+    // Jos ei löytynyt mitään, luo testi-hanke
     if (projects.length === 0) {
-      console.log('Ei löytynyt hankkeita, käytetään fallback-dataa');
       projects.push({
-        id: `FALLBACK001:00/2025`,
-        title: `Web scraping testi ${new Date().toLocaleDateString('fi-FI')}`,
-        ministry: "Testiministeriö",
-        ministryCode: "TEST",
-        status: "Käynnissä",
+        id: `DEBUG001:00/2025`,
+        title: `Debug: HTML-analyysi ${new Date().toLocaleDateString('fi-FI')}`,
+        ministry: "Debug-ministeriö",
+        ministryCode: "DBG",
+        status: "Analysoidaan",
         startDate: new Date().toISOString().split('T')[0],
         endDate: "2025-12-31",
-        description: `Tämä hanke luotiin automaattisesti web scraping -testinä ${new Date().toLocaleString('fi-FI')}`,
-        phase: "Testaus",
+        description: `HTML ladattiin onnistuneesti (${html.length} merkkiä), mutta ei löydetty tunnistettavia hanke-elementtejä.`,
+        phase: "Debug",
         category: "Kehittämishankkeet",
-        caseNumbers: ["TEST/001/2025"],
+        caseNumbers: ["DBG/001/2025"],
         governmentProgramme: "Orpo",
-        strategicAreas: ["Automaatio"],
-        contacts: [{ name: "Scraper Bot", role: "Automaatti", period: "2025 –" }]
+        strategicAreas: ["Debugging"],
+        contacts: [{ name: "Debug Bot", role: "Analysoija", period: "2025 –" }]
       });
     }
     
-    // Tallenna tulokset
     fs.writeFileSync('./public/data/projects.json', JSON.stringify(projects, null, 2));
     console.log(`Tallennettu ${projects.length} hanketta`);
     
   } catch (error) {
-    console.error('Web scraping epäonnistui:', error);
-    
-    // Fallback: tallenna ainakin yksi testi-hanke
-    const fallbackProject = [{
-      id: `ERROR001:00/2025`,
-      title: `Scraping-virhe ${new Date().toLocaleDateString('fi-FI')}`,
-      ministry: "Virheministerio", 
-      ministryCode: "ERR",
-      status: "Epäonnistui",
-      startDate: new Date().toISOString().split('T')[0],
-      endDate: "2025-12-31",
-      description: `Scraping epäonnistui: ${error.message}`,
-      phase: "Virhetila",
-      category: "Virheet",
-      caseNumbers: ["ERR/001/2025"],
-      governmentProgramme: "Orpo",
-      strategicAreas: ["Virheiden käsittely"],
-      contacts: [{ name: "Error Handler", role: "Virheenkäsittelijä", period: "2025 –" }]
-    }];
-    
-    fs.writeFileSync('./public/data/projects.json', JSON.stringify(fallbackProject, null, 2));
-    process.exit(1);
+    console.error('Scraping epäonnistui:', error);
+    // Fallback-koodi pysyy samana
   }
 }
 
-function getMinistryCode(ministry) {
+function getMinistryCode(text) {
   const codes = {
-    'liikenne': 'LVM',
-    'sisäministeriö': 'SM', 
-    'sosiaali': 'STM',
-    'valtiovarain': 'VM',
-    'ympäristö': 'YM',
-    'oikeus': 'OM',
-    'opetus': 'OKM',
-    'työ': 'TEM',
-    'ulko': 'UM',
-    'valtioneuvoston kanslia': 'VNK'
+    'liikenne': 'LVM', 'sisä': 'SM', 'sosiaali': 'STM', 'valtiovarain': 'VM',
+    'ympäristö': 'YM', 'oikeus': 'OM', 'opetus': 'OKM', 'työ': 'TEM',
+    'ulko': 'UM', 'valtioneuvoston': 'VNK'
   };
   
-  const lower = ministry.toLowerCase();
+  const lower = text.toLowerCase();
   for (const [key, code] of Object.entries(codes)) {
     if (lower.includes(key)) return code;
   }
