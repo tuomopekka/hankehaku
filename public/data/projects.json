@@ -1,26 +1,26 @@
 [
   {
-    "id": "FALLBACK001:00/2025",
-    "title": "Web scraping testi 26.9.2025",
-    "ministry": "Testiministeriö",
-    "ministryCode": "TEST",
-    "status": "Käynnissä",
+    "id": "NOFOUND001:00/2025",
+    "title": "Ei hankkeita: 2 linkkiä, 1 otsikkoa",
+    "ministry": "Debug",
+    "ministryCode": "NO",
+    "status": "Debug",
     "startDate": "2025-09-26",
     "endDate": "2025-12-31",
-    "description": "Tämä hanke luotiin automaattisesti web scraping -testinä 26.9.2025 klo 6.42.18",
-    "phase": "Testaus",
-    "category": "Kehittämishankkeet",
+    "description": "Scraping debug: Analysoitiin 150655 merkkiä HTML:ää, löydettiin 2 linkkiä ja 1 otsikkoa, mutta ei tunnistettavia hankkeita.",
+    "phase": "Debug",
+    "category": "Debug",
     "caseNumbers": [
-      "TEST/001/2025"
+      "DEBUG/001/2025"
     ],
     "governmentProgramme": "Orpo",
     "strategicAreas": [
-      "Automaatio"
+      "Debugging"
     ],
     "contacts": [
       {
-        "name": "Scraper Bot",
-        "role": "Automaatti",
+        "name": "Debug",
+        "role": "Tester",
         "period": "2025 –"
       }
     ]
