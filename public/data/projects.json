@@ -130,32 +130,6 @@
     ]
   },
   {
-    "id": "VM008:00/2024",
-    "title": "Hallituksen esitys eduskunnalle laeiksi vuoden 2025 tuloveroasteikosta ja tuloverolain muuttamisesta ja väliaikaisesta muuttamisesta sekä eräiksi muiksi verolaeiksi",
-    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
-    "ministryCode": "UNK",
-    "status": "Completed",
-    "startDate": "2024-01-01",
-    "endDate": "2025-12-31",
-    "description": "Valitse kieli:",
-    "phase": "Completed",
-    "category": "Lainvalmistelu",
-    "caseNumbers": [
-      "VM008:00/2024"
-    ],
-    "governmentProgramme": "Orpo",
-    "strategicAreas": [
-      "Hallinnon kehittäminen"
-    ],
-    "contacts": [
-      {
-        "name": "Scrapettu yhteystieto",
-        "role": "Yhteyshenkilö",
-        "period": "2024-2025"
-      }
-    ]
-  },
-  {
     "id": "OM003:00/2024",
     "title": "Direktiiviehdotus kolmansien valtioiden puolesta harjoitettavan intressivaikuttamisen avoimuudesta ja rekisteröinnistä sekä ehdotus asetukseksi asetusten (EU) N:o 1024/2012 ja (EU) 2018/1724 muuttamisesta (EU-valmistelu)",
     "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
@@ -168,32 +142,6 @@
     "category": "Lainvalmistelu",
     "caseNumbers": [
       "OM003:00/2024"
-    ],
-    "governmentProgramme": "Orpo",
-    "strategicAreas": [
-      "Hallinnon kehittäminen"
-    ],
-    "contacts": [
-      {
-        "name": "Scrapettu yhteystieto",
-        "role": "Yhteyshenkilö",
-        "period": "2024-2025"
-      }
-    ]
-  },
-  {
-    "id": "LVM045:00/2024",
-    "title": "Teledirektiivin täytäntöönpanon seuranta",
-    "ministry": "Finnish Government   \n            \n                Prime Minister's Office   \n                Ministry of Defence   \n                Ministry of Transport and Communications   \n                Ministry for Foreign Affairs   \n                Ministry of Finance   \n                Ministry of Economic Affairs and Employment   \n                Ministry of Justice   \n                Ministry of Education and Culture   \n                Ministry of Social Affairs and Health   \n                Ministry of the Interior   \n                Ministry of Agriculture and Forestry   \n                Ministry of the Environment",
-    "ministryCode": "UNK",
-    "status": "Completed",
-    "startDate": "2024-01-01",
-    "endDate": "2025-12-31",
-    "description": "Valitse kieli:",
-    "phase": "Completed",
-    "category": "Lainvalmistelu",
-    "caseNumbers": [
-      "LVM045:00/2024"
     ],
     "governmentProgramme": "Orpo",
     "strategicAreas": [
